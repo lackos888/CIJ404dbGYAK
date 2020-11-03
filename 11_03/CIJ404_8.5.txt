@@ -1,0 +1,4 @@
+ALTER TABLE `termekek` ADD szin varchar(24);
+DROP TABLE `termekek`;
+
+DELETE FROM `termekek` WHERE `kategoria` IS NULL OR `kategoria` = '';
