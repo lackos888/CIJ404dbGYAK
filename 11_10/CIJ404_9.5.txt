@@ -1,0 +1,4 @@
+1.) GRANT SELECT ON `ZOLI`.`termekek` TO 'PETER'@'';
+2.) ZOLI.termekek
+3.) GRANT SELECT (nev) ON `ZOLI`.`termekek` TO ''@'%';
+4.) SELECT `nev` FROM `ZOLI.termekek`

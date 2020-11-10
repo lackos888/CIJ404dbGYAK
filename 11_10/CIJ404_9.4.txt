@@ -1,0 +1,5 @@
+1.) SELECT COUNT(tkod) FROM `termek` WHERE `ear` > AVG(ear)
+2.) SELECT `nev` FROM `termek` ORDER BY `ear` DESC LIMIT 1
+3.) SELECT `nev` FROM `gyarto` WHERE `adoszam` IN (SELECT `gyarto` FROM `termek` ORDER BY `ear` DESC LIMIT 1)
+4.) SELECT gyarto.nev, AVG(termek.ear) AS `atlagar` FROM `gyarto` INNER JOIN `termek` ON gyarto.adoszam = termek.gyarto ORDER BY `atlagar` DESC LIMIT 1
+5.) 
