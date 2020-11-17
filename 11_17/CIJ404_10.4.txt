@@ -1,0 +1,2 @@
+a.) ALTER TABLE `termek` ADD COLUMN kategoria VARCHAR(16)
+b.) SELECT `termek.kategoria` FROM `termek` GROUP BY `termek.kategoria` HAVING COUNT(termek.tkod) = (SELECT COUNT(termek.tkod) FROM `termek`)
