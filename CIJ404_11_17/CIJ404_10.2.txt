@@ -1,0 +1,4 @@
+1.) SELECT AVG(tanfolyam.ar) AS `atlagar`, (MAX(tanfolyam.ar)-MIN(tanfolyam.ar)) AS `artartomany` FROM `tanfolyam` GROUP BY `tipus`
+2.) SELECT `megnevezes`, IF(tanfolyam.ar > 100000, "drága", "olcsó") AS `arkategoria` FROM `tanfolyam`
+3.) SELECT tanfolyam.megnevezes, IF(COUNT(befizetes.diak) > 10, "sok", "keves") AS `resztvevokszama` FROM `tanfolyam` INNER JOIN `befizetes` ON tanfolyam.tkod = befizetes.kurzus
+

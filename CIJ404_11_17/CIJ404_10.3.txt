@@ -1,0 +1,2 @@
+CREATE TABLE `gyartoktermekei` (`gyarto` INT NOT NULL REFERENCES gyarto (adoszam), `termek` INT NOT NULL REFERENCES termek (tkod))
+ALTER TABLE `termek` DROP COLUMN `gyarto`
