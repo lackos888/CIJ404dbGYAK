@@ -1,0 +1,6 @@
+INSERT INTO `termekek` VALUES (0, 'teszttermek', 1, 'X');
+INSERT INTO `termekek` VALUES (1, 'teszttermek2', 1, 'Y');
+INSERT INTO `termekek` VALUES (2, 'teszttermek3', 1, 'Z');
+
+DELETE FROM `termekek` WHERE `ear` < X
+UPDATE `termekek` SET `ear` = `ear`*0.9 WHERE `kategoria` = 'Y'
