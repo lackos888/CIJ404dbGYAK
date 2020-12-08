@@ -1,0 +1,27 @@
+INSERT INTO `account` (`id`, `userName`, `passwordHashed`, `adminLevel`, `adminNick`, `email`, `rememberToken`, `hwidHash`, `hwidExHash`, `registerDate`, `socialId`) VALUES
+(1, 'teszt1234', 'WhirlpoolHashVagyNem ', 0, '0', 'kovacs128@iit.uni-miskolc.hu ', NULL, '123456', '43321', '2020-11-30 20:10:13', 1337);
+INSERT INTO `characters` (`id`, `characterName`, `x`, `y`, `z`, `dimension`, `health`, `armor`, `characterVisibleDescription`, `gta5CharacterAttributes`, `dateOfBirth`, `placeOfBirth`, `moneyInCash`, `ownerAccountId`) VALUES
+(1, 'Üdv_Özlet', 0, 0, 0, 0, 200, 0, 'Miskolci Egyetem hallgatója', '{”eyebrowType”:”test”}', '1999.12.12', 'Miskolc', 0, 1),
+(2, 'Üdv_Özlet2', 0, 0, 0, 0, 200, 0, 'Miskolci Egyetem hallgatója', '{”eyebrowType”:”test”}', '1999.12.12', 'Miskolc', 0, 1);
+INSERT INTO `vehicles` (`dbID`, `ownerType`, `ownerId`, `gta5model`, `x`, `y`, `z`, `rx`, `ry`, `rz`, `healthAndDamageData`, `dimension`) VALUES
+(1, 0, 1, 'zentorno', 0, 0, 0, 0, 0, 0, 'A===', 0),
+(2, 0, 2, 'pfister811', 0, 0, 0, 0, 0, 0, 'A===', 0),
+(3, 0, 1, 'schafter2', 0, 0, 0, 0, 0, 0, 'A===', 0);
+INSERT INTO `CurrentModsVehicles` (`modType`, `modValue`, `vehicledbId`) VALUES (11, 3, 1);
+INSERT INTO `installedExtras` (`extraId`, `vehicledbId`) VALUES (1, 1);
+INSERT INTO `items` (`dbID`, `ownerType`, `ownerId`, `itemId`, `itemType`, `itemSlot`, `itemAmount`, `creationDate`, `createdByRes`) VALUES
+(1, 0, 1, 1, 0, 30, 1, '2020-11-30 20:10:13', 'teszt'),
+(2, 0, 1, 2, 0, 30, 1, '2020-11-30 20:10:13', 'teszt'),
+(3, 0, 1, 2, 0, 30, 1, '2020-11-30 20:27:11', 'teszt');
+INSERT INTO `Items` (`ownerType`, `ownerId`, `itemId`, `itemType`, `itemSlot`, `itemAmount`, `createdByRes`) VALUES (0, 1, 2, 0, 30, 1, 'teszt');
+INSERT INTO `itemsValues`  (`itemValue`, `itemdbId`) VALUES ('1', 1);
+INSERT INTO `equippedClothes` (`characterId`, `itemDBId`) VALUES (1, 2);
+INSERT INTO `bankaccounts` (`numericId`, `currentMoney`, `bankAccountName`, `ownerId`) VALUES
+(1, 123456, 'BBM Protection', 1),
+(3, 43215, 'BBM Protection 2', 2),
+(4, 696969, 'BBM Protection 3', 2),
+(5, 123456, 'BBM Protection 4', 1);INSERT INTO `charactershavingpermissiontouseba` (`permissionType`, `numericId`, `characterId`) VALUES
+('own', 1, 1),
+('fri', 1, 2),
+('own', 3, 2),
+('fri', 3, 1);

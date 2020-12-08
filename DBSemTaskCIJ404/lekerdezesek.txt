@@ -1,0 +1,47 @@
+1. Hány autója van Üdv_Özlet karakternek?
+SELECT COUNT(`dbID`) FROM `Vehicles` WHERE `ownerType` = 0 AND `ownerId` = (SELECT `id` FROM `Characters` WHERE `characterName` = 'Üdv_Özlet');
+
+2. Hány tárgy található Üdv_Özlet karakternél?
+SELECT COUNT(`dbID`) FROM `Items` WHERE `ownerType` = 0 AND `ownerId` = (SELECT `id` FROM `Characters` WHERE `characterName` = 'Üdv_Özlet');
+
+3. Hány éves az Üdv_Özlet karakter?
+SELECT (YEAR(CURRENT_TIMESTAMP)-YEAR(dateOfBirth)) AS `age` FROM `Characters` WHERE `characterName` = 'Üdv_Özlet';
+
+4. Mikor kapta meg a legutolsó tárgyát az Üdv_Özlet karakter?
+SELECT `creationDate` FROM `Items` WHERE `ownerType` = 0 AND  `ownerId` = (SELECT `id` FROM `Characters` WHERE `characterName` = 'Üdv_Özlet') ORDER BY `creationDate` DESC LIMIT 1;
+
+5. Hogy néz ki Üdv_Özlet karaktere?
+SELECT `gta5CharacterAttributes` FROM `Characters` WHERE `characterName` = 'Üdv_Özlet';
+
+6. Mely jármûveken nincs egyetlen tuning sem ID szerint?
+SELECT vehicles.dbID FROM `vehicles` WHERE `dbID` NOT IN (SELECT DISTINCT `vehicledbId` FROM `currentmodsvehicles`);
+
+7. Mennyi pénze van összesen a barátjai bankszámláit is beleszámolva bankban Üdv_Özlet karakternek?
+SELECT SUM(currentMoney) FROM `bankaccounts` WHERE `numericId` IN (SELECT `numericId` FROM `charactershavingpermissiontouseba` WHERE `characterId` = (SELECT `id` FROM `Characters` WHERE `characterName` = 'Üdv_Özlet'));
+
+8. Kérdezzük le, hogy egy-egy karakternek mennyi pénze van a bankszámláin!
+SELECT SUM(currentMoney), CONCAT('teszt-', numericId, '-', ownerId) AS `stringId`  , Characters.characterName FROM `bankaccounts` INNER JOIN `Characters` ON characters.id = bankaccounts.ownerId GROUP BY `ownerId`;
+
+9. Kérdezzük le a jármûvek tulajdonosának nevét, majd irassuk ki a dbID-ját, továbbá a gta5-ös modelljét, és a tulajdonos nevét!
+SELECT `dbID`, `gta5model`, Characters.characterName FROM `vehicles` INNER JOIN `Characters` ON characters.id = vehicles.ownerId;
+
+10. Kérdezzük le, hogy kiknek van hozzáférése név és karakterid szerint a BBM Protection-ös bankszámlákhoz!
+SELECT `id`, `characterName` FROM `characters` WHERE `id` IN (SELECT DISTINCT `characterId` FROM `charactershavingpermissiontouseba` WHERE `numericId` IN (SELECT `numericId`  FROM `bankaccounts` WHERE `bankAccountName` LIKE '%BBM Protection%'));
+
+11. Növeljük meg a BBM Protectionos bankszámlákon található pénzt 10%-kal!
+UPDATE `bankaccounts` SET `currentMoney` = `currentMoney` * 1.1 WHERE `bankAccountName` LIKE '%BBM Protection%';
+
+12. Állítsuk át az összes Üdv_Özlet karakter által birtokolt jármûvet pfister811-re!
+UPDATE `vehicles` SET `gta5model` = 'pfister811' WHERE `ownerType` = 0 AND `ownerId` = (SELECT `id` FROM `Characters` WHERE `characterName` = 'Üdv_Özlet');
+
+13. Vegyük el az Üdv_Özlet karaktertõl a hozzáférést az összes bankszámlától, amelyhez hozzáfér jelenleg (kivéve sajáttól)!
+DELETE FROM ` charactershavingpermissiontouseba` WHERE `characterId` = (SELECT `id` FROM `Characters` WHERE `characterName` = 'Üdv_Özlet') AND permissionType <> ’own’;
+
+14. Írjuk át az összes bankszámlát Üdv_Özlet nevérõl Üdv_Özlet2-re!
+UPDATE `bankaccounts`, `charactershavingpermissiontouseba` SET bankaccounts.ownerId = (SELECT `id` FROM `Characters` WHERE `characterName` = 'Üdv_Özlet2'), charactershavingpermissiontouseba.characterId = (SELECT `id` FROM `Characters` WHERE `characterName` = 'Üdv_Özlet2') WHERE bankaccounts.ownerId = (SELECT `id` FROM `Characters` WHERE `characterName` = 'Üdv_Özlet') AND charactershavingpermissiontouseba.characterId = (SELECT `id` FROM `Characters` WHERE `characterName` = 'Üdv_Özlet') AND charactershavingpermissiontouseba.permissionType = 'own';
+
+15. Karácsony alkalmából adjunk minden karakternek +10% készpénzben lévõ pénzt, ha $0 van nála, akkor pedig 100$-t!
+UPDATE `characters` SET `moneyInCash` = IF(moneyInCash = 0, 100, moneyInCash * 1.10);
+
+16. Hiba miatt rosszul lett kitöltve a createdByRes mezõ egyes esetekben, így az anticheat false-positivekat produkálhat. Írjuk át a ’teszt’ createdByRes értékeket ’teszt2’-re!
+UPDATE `items` SET `createdByRes` = 'teszt2' WHERE `createdByRes` = 'teszt';
