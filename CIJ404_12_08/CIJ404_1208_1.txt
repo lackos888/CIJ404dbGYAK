@@ -1,0 +1,17 @@
+E-SQL API:
+
+Az SQL forráskódként van értelmezve, nem külön funkcióhívásokkal elérhetõ
+Az SQL nem része a programnyelvnek, az SQL és a gazdanyelv el van szeparálva
+A háttérben a fordító az SQL-es forráskódot funkcióhívásokkal helyettesíti
+Bináris library
+Elõfordítás CLI-re
+Egyszerre csak egy rekord jön át a programba, több rekod lekérdezése: kurzor szerkezet
+
+CLI SQL API:
+
+DBMS kapcsolat függvényeken keresztül történik
+A fordító ugyan úgy kezeli a DBMS függvényeket, mint bármilyen más külsõ libraryt
+Külön funkciók vannak a kapcsolatfelvételre, a parancs csatorna nyitására, a parancs átküldésére, eredmény fogadására, kapcsolat zárására
+SQL Injection veszély
+Vannak olyan API-k, amelyek platformfüggetlenné teszik az SQL használatát, ODBC API, driver managerbõl, driverbõl és repostoryból állnak
+A driver végzi a kapcsolatfelvételt, az adat és parancs konverziót, mûvelet végrehajtást, és egyéb platformhoz fûzõdõ dolgot
